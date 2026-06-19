@@ -1,0 +1,1283 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 70;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		83025BAC2E4AAECE0094AFF7 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 83025BA32E4AAECE0094AFF7 /* README.md */; };
+		83025BAD2E4AAECE0094AFF7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025B9F2E4AAECE0094AFF7 /* ContentView.swift */; };
+		83025BAE2E4AAECE0094AFF7 /* SpeedLimitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BA62E4AAECE0094AFF7 /* SpeedLimitService.swift */; };
+		83025BAF2E4AAECE0094AFF7 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BA22E4AAECE0094AFF7 /* NetworkMonitor.swift */; };
+		83025BAF2E4AAECE0094AFF8 /* HERERateLimiter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BA72E4AAECE0094AFF8 /* HERERateLimiter.swift */; };
+		83025BB02E4AAECE0094AFF7 /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BA52E4AAECE0094AFF7 /* SoundManager.swift */; };
+		83025BB12E4AAECE0094AFF7 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BA12E4AAECE0094AFF7 /* LocationManager.swift */; };
+		83025BB22E4AAECE0094AFF7 /* SpeedyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BA82E4AAECE0094AFF7 /* SpeedyApp.swift */; };
+		83025BB32E4AAECE0094AFF7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BA42E4AAECE0094AFF7 /* SettingsView.swift */; };
+		83025BB72E4AC2240094AFF7 /* Testroute.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 83025BB62E4AC2240094AFF7 /* Testroute.gpx */; };
+		83025BBD2E4AD29F0094AFF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83025BBC2E4AD29F0094AFF7 /* Assets.xcassets */; };
+		83025BBF2E4AD29F0094AFF7 /* GPXParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BBE2E4AD29F0094AFF7 /* GPXParser.swift */; };
+		83025BC02E4AD29F0094AFF7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BC12E4AD29F0094AFF7 /* LoadingView.swift */; };
+		83025BC32E4AD29F0094AFF7 /* SpeedLimitCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83025BC22E4AD29F0094AFF7 /* SpeedLimitCache.swift */; };
+		831DE8042E553DD100C58100 /* SpeedyWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 831DE7EE2E553DCE00C58100 /* SpeedyWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		831DE8602E55412D00C58100 /* SpeedyShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831DE8552E55412C00C58100 /* SpeedyShared.framework */; };
+		831DE86A2E55412D00C58100 /* SpeedyShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831DE8552E55412C00C58100 /* SpeedyShared.framework */; };
+		831DE86C2E55412D00C58100 /* SpeedyShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 831DE8552E55412C00C58100 /* SpeedyShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		831DE87C2E55412D00C58100 /* SpeedyShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 831DE8552E55412C00C58100 /* SpeedyShared.framework */; };
+		83C9B1A22E56789200B12C34 /* SpeedyAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C9B1A02E56789000B12C34 /* SpeedyAppDelegate.swift */; };
+		83D388F22E6A84C7003FD8E6 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 83D388F12E6A84C7003FD8E6 /* GoogleMobileAds */; };
+		83E0AD012E6B000100AD0FAD /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83E0AD002E6B000100AD0FAD /* AdManager.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		831DE8022E553DD100C58100 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1234567890123456789032 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 831DE7ED2E553DCE00C58100;
+			remoteInfo = SpeedyWidgetExtension;
+		};
+		831DE8612E55412D00C58100 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1234567890123456789032 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 831DE8542E55412C00C58100;
+			remoteInfo = SpeedyShared;
+		};
+		831DE8632E55412D00C58100 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1234567890123456789032 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A1234567890123456789028;
+			remoteInfo = Speedy;
+		};
+		831DE8682E55412D00C58100 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1234567890123456789032 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 831DE8542E55412C00C58100;
+			remoteInfo = SpeedyShared;
+		};
+		831DE87E2E55412D00C58100 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1234567890123456789032 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 831DE8542E55412C00C58100;
+			remoteInfo = SpeedyShared;
+		};
+		8399B1732E56504C00A86F78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1234567890123456789032 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8399B1652E56504900A86F78;
+			remoteInfo = "Speedy Watch App";
+		};
+		8399B17D2E56504C00A86F78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1234567890123456789032 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8399B1652E56504900A86F78;
+			remoteInfo = "Speedy Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		831DE8052E553DD100C58100 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				831DE8042E553DD100C58100 /* SpeedyWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		831DE86B2E55412D00C58100 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				831DE86C2E55412D00C58100 /* SpeedyShared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		83025B9F2E4AAECE0094AFF7 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		83025BA02E4AAECE0094AFF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83025BA02E4AAECE0094AFF1 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		83025BA12E4AAECE0094AFF7 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		83025BA22E4AAECE0094AFF7 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		83025BA32E4AAECE0094AFF7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		83025BA42E4AAECE0094AFF7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		83025BA52E4AAECE0094AFF7 /* SoundManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
+		83025BA62E4AAECE0094AFF7 /* SpeedLimitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedLimitService.swift; sourceTree = "<group>"; };
+		83025BA72E4AAECE0094AFF7 /* Speedy.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Speedy.xcodeproj; sourceTree = "<group>"; };
+		83025BA72E4AAECE0094AFF8 /* HERERateLimiter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HERERateLimiter.swift; sourceTree = "<group>"; };
+		83025BA82E4AAECE0094AFF7 /* SpeedyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedyApp.swift; sourceTree = "<group>"; };
+		83025BB62E4AC2240094AFF7 /* Testroute.gpx */ = {isa = PBXFileReference; lastKnownFileType = text; path = Testroute.gpx; sourceTree = "<group>"; };
+		83025BBC2E4AD29F0094AFF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		83025BBE2E4AD29F0094AFF7 /* GPXParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GPXParser.swift; sourceTree = "<group>"; };
+		83025BC12E4AD29F0094AFF7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		83025BC22E4AD29F0094AFF7 /* SpeedLimitCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedLimitCache.swift; sourceTree = "<group>"; };
+		831DE7EE2E553DCE00C58100 /* SpeedyWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SpeedyWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		831DE7F02E553DCE00C58100 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		831DE7F22E553DCE00C58100 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		831DE8552E55412C00C58100 /* SpeedyShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpeedyShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		831DE85F2E55412D00C58100 /* SpeedySharedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpeedySharedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8399B1662E56504900A86F78 /* Speedy Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Speedy Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8399B1722E56504C00A86F78 /* Speedy Watch AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Speedy Watch AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8399B17C2E56504C00A86F78 /* Speedy Watch AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Speedy Watch AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		83C9B1A02E56789000B12C34 /* SpeedyAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedyAppDelegate.swift; sourceTree = "<group>"; };
+		83E0AD002E6B000100AD0FAD /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
+		A1234567890123456789022 /* Speedy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Speedy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		831DE8082E553DD100C58100 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 831DE7ED2E553DCE00C58100 /* SpeedyWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		831DE7F42E553DCE00C58100 /* SpeedyWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (831DE8082E553DD100C58100 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SpeedyWidget; sourceTree = "<group>"; };
+		831DE8562E55412C00C58100 /* SpeedyShared */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SpeedyShared; sourceTree = "<group>"; };
+		831DE8652E55412D00C58100 /* SpeedySharedTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SpeedySharedTests; sourceTree = "<group>"; };
+		837BEF162E57B8E300175293 /* Speedy Watch App */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Speedy Watch App"; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		831DE7EB2E553DCE00C58100 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				831DE87C2E55412D00C58100 /* SpeedyShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		831DE8522E55412C00C58100 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		831DE85C2E55412D00C58100 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				831DE8602E55412D00C58100 /* SpeedyShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8399B1632E56504900A86F78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8399B16F2E56504C00A86F78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8399B1792E56504C00A86F78 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1234567890123456789024 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83D388F22E6A84C7003FD8E6 /* GoogleMobileAds in Frameworks */,
+				831DE86A2E55412D00C58100 /* SpeedyShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		83025BA92E4AAECE0094AFF7 /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		831DE7EF2E553DCE00C58100 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				831DE7F02E553DCE00C58100 /* WidgetKit.framework */,
+				831DE7F22E553DCE00C58100 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A1234567890123456789026 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1234567890123456789022 /* Speedy.app */,
+				831DE7EE2E553DCE00C58100 /* SpeedyWidgetExtension.appex */,
+				831DE8552E55412C00C58100 /* SpeedyShared.framework */,
+				831DE85F2E55412D00C58100 /* SpeedySharedTests.xctest */,
+				8399B1662E56504900A86F78 /* Speedy Watch App.app */,
+				8399B1722E56504C00A86F78 /* Speedy Watch AppTests.xctest */,
+				8399B17C2E56504C00A86F78 /* Speedy Watch AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1234567890123456789027 = {
+			isa = PBXGroup;
+			children = (
+				837BEF162E57B8E300175293 /* Speedy Watch App */,
+				831DE7F42E553DCE00C58100 /* SpeedyWidget */,
+				831DE8562E55412C00C58100 /* SpeedyShared */,
+				831DE8652E55412D00C58100 /* SpeedySharedTests */,
+				831DE7EF2E553DCE00C58100 /* Frameworks */,
+				A1234567890123456789026 /* Products */,
+				83025B9F2E4AAECE0094AFF7 /* ContentView.swift */,
+				83025BB62E4AC2240094AFF7 /* Testroute.gpx */,
+				83025BA02E4AAECE0094AFF7 /* Info.plist */,
+				83025BA02E4AAECE0094AFF1 /* Secrets.xcconfig */,
+				83025BA12E4AAECE0094AFF7 /* LocationManager.swift */,
+				83025BA22E4AAECE0094AFF7 /* NetworkMonitor.swift */,
+				83025BA32E4AAECE0094AFF7 /* README.md */,
+				83025BA42E4AAECE0094AFF7 /* SettingsView.swift */,
+				83025BA52E4AAECE0094AFF7 /* SoundManager.swift */,
+				83025BA62E4AAECE0094AFF7 /* SpeedLimitService.swift */,
+				83025BA72E4AAECE0094AFF8 /* HERERateLimiter.swift */,
+				83025BA72E4AAECE0094AFF7 /* Speedy.xcodeproj */,
+				83025BA82E4AAECE0094AFF7 /* SpeedyApp.swift */,
+				83C9B1A02E56789000B12C34 /* SpeedyAppDelegate.swift */,
+				83025BBC2E4AD29F0094AFF7 /* Assets.xcassets */,
+				83025BBE2E4AD29F0094AFF7 /* GPXParser.swift */,
+				83025BC12E4AD29F0094AFF7 /* LoadingView.swift */,
+				83025BC22E4AD29F0094AFF7 /* SpeedLimitCache.swift */,
+				83E0AD002E6B000100AD0FAD /* AdManager.swift */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		831DE8502E55412C00C58100 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		831DE7ED2E553DCE00C58100 /* SpeedyWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 831DE8092E553DD100C58100 /* Build configuration list for PBXNativeTarget "SpeedyWidgetExtension" */;
+			buildPhases = (
+				831DE7EA2E553DCE00C58100 /* Sources */,
+				831DE7EB2E553DCE00C58100 /* Frameworks */,
+				831DE7EC2E553DCE00C58100 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				831DE87D2E55412D00C58100 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				831DE7F42E553DCE00C58100 /* SpeedyWidget */,
+			);
+			name = SpeedyWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = SpeedyWidgetExtension;
+			productReference = 831DE7EE2E553DCE00C58100 /* SpeedyWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		831DE8542E55412C00C58100 /* SpeedyShared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 831DE86D2E55412D00C58100 /* Build configuration list for PBXNativeTarget "SpeedyShared" */;
+			buildPhases = (
+				831DE8502E55412C00C58100 /* Headers */,
+				831DE8512E55412C00C58100 /* Sources */,
+				831DE8522E55412C00C58100 /* Frameworks */,
+				831DE8532E55412C00C58100 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				831DE8562E55412C00C58100 /* SpeedyShared */,
+			);
+			name = SpeedyShared;
+			packageProductDependencies = (
+			);
+			productName = SpeedyShared;
+			productReference = 831DE8552E55412C00C58100 /* SpeedyShared.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		831DE85E2E55412D00C58100 /* SpeedySharedTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 831DE8702E55412D00C58100 /* Build configuration list for PBXNativeTarget "SpeedySharedTests" */;
+			buildPhases = (
+				831DE85B2E55412D00C58100 /* Sources */,
+				831DE85C2E55412D00C58100 /* Frameworks */,
+				831DE85D2E55412D00C58100 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				831DE8622E55412D00C58100 /* PBXTargetDependency */,
+				831DE8642E55412D00C58100 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				831DE8652E55412D00C58100 /* SpeedySharedTests */,
+			);
+			name = SpeedySharedTests;
+			packageProductDependencies = (
+			);
+			productName = SpeedySharedTests;
+			productReference = 831DE85F2E55412D00C58100 /* SpeedySharedTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8399B1652E56504900A86F78 /* Speedy Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8399B18E2E56504C00A86F78 /* Build configuration list for PBXNativeTarget "Speedy Watch App" */;
+			buildPhases = (
+				8399B1622E56504900A86F78 /* Sources */,
+				8399B1632E56504900A86F78 /* Frameworks */,
+				8399B1642E56504900A86F78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				837BEF162E57B8E300175293 /* Speedy Watch App */,
+			);
+			name = "Speedy Watch App";
+			packageProductDependencies = (
+			);
+			productName = "Speedy Watch App";
+			productReference = 8399B1662E56504900A86F78 /* Speedy Watch App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8399B1712E56504C00A86F78 /* Speedy Watch AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8399B18F2E56504C00A86F78 /* Build configuration list for PBXNativeTarget "Speedy Watch AppTests" */;
+			buildPhases = (
+				8399B16E2E56504C00A86F78 /* Sources */,
+				8399B16F2E56504C00A86F78 /* Frameworks */,
+				8399B1702E56504C00A86F78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8399B1742E56504C00A86F78 /* PBXTargetDependency */,
+			);
+			name = "Speedy Watch AppTests";
+			packageProductDependencies = (
+			);
+			productName = "Speedy Watch AppTests";
+			productReference = 8399B1722E56504C00A86F78 /* Speedy Watch AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8399B17B2E56504C00A86F78 /* Speedy Watch AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8399B1902E56504C00A86F78 /* Build configuration list for PBXNativeTarget "Speedy Watch AppUITests" */;
+			buildPhases = (
+				8399B1782E56504C00A86F78 /* Sources */,
+				8399B1792E56504C00A86F78 /* Frameworks */,
+				8399B17A2E56504C00A86F78 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8399B17E2E56504C00A86F78 /* PBXTargetDependency */,
+			);
+			name = "Speedy Watch AppUITests";
+			packageProductDependencies = (
+			);
+			productName = "Speedy Watch AppUITests";
+			productReference = 8399B17C2E56504C00A86F78 /* Speedy Watch AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		A1234567890123456789028 /* Speedy */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1234567890123456789029 /* Build configuration list for PBXNativeTarget "Speedy" */;
+			buildPhases = (
+				A1234567890123456789030 /* Sources */,
+				A1234567890123456789024 /* Frameworks */,
+				A1234567890123456789031 /* Resources */,
+				831DE8052E553DD100C58100 /* Embed Foundation Extensions */,
+				831DE86B2E55412D00C58100 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				831DE8032E553DD100C58100 /* PBXTargetDependency */,
+				831DE8692E55412D00C58100 /* PBXTargetDependency */,
+			);
+			name = Speedy;
+			productName = Speedy;
+			productReference = A1234567890123456789022 /* Speedy.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1234567890123456789032 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1640;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					831DE7ED2E553DCE00C58100 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					831DE8542E55412C00C58100 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					831DE85E2E55412D00C58100 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = A1234567890123456789028;
+					};
+					8399B1652E56504900A86F78 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					8399B1712E56504C00A86F78 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 8399B1652E56504900A86F78;
+					};
+					8399B17B2E56504C00A86F78 = {
+						CreatedOnToolsVersion = 16.4;
+						TestTargetID = 8399B1652E56504900A86F78;
+					};
+					A1234567890123456789028 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A1234567890123456789033 /* Build configuration list for PBXProject "Speedy" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1234567890123456789027;
+			packageReferences = (
+				83D388F02E6A84C7003FD8E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
+			productRefGroup = A1234567890123456789026 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 83025BA92E4AAECE0094AFF7 /* Products */;
+					ProjectRef = 83025BA72E4AAECE0094AFF7 /* Speedy.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				A1234567890123456789028 /* Speedy */,
+				831DE7ED2E553DCE00C58100 /* SpeedyWidgetExtension */,
+				831DE8542E55412C00C58100 /* SpeedyShared */,
+				831DE85E2E55412D00C58100 /* SpeedySharedTests */,
+				8399B1652E56504900A86F78 /* Speedy Watch App */,
+				8399B1712E56504C00A86F78 /* Speedy Watch AppTests */,
+				8399B17B2E56504C00A86F78 /* Speedy Watch AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		831DE7EC2E553DCE00C58100 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		831DE8532E55412C00C58100 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		831DE85D2E55412D00C58100 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8399B1642E56504900A86F78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8399B1702E56504C00A86F78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8399B17A2E56504C00A86F78 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1234567890123456789031 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83025BB72E4AC2240094AFF7 /* Testroute.gpx in Resources */,
+				83025BBD2E4AD29F0094AFF7 /* Assets.xcassets in Resources */,
+				83025BAC2E4AAECE0094AFF7 /* README.md in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		831DE7EA2E553DCE00C58100 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		831DE8512E55412C00C58100 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		831DE85B2E55412D00C58100 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8399B1622E56504900A86F78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8399B16E2E56504C00A86F78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8399B1782E56504C00A86F78 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1234567890123456789030 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				83025BAD2E4AAECE0094AFF7 /* ContentView.swift in Sources */,
+				83025BAE2E4AAECE0094AFF7 /* SpeedLimitService.swift in Sources */,
+				83025BAF2E4AAECE0094AFF8 /* HERERateLimiter.swift in Sources */,
+				83025BAF2E4AAECE0094AFF7 /* NetworkMonitor.swift in Sources */,
+				83025BB02E4AAECE0094AFF7 /* SoundManager.swift in Sources */,
+				83025BB12E4AAECE0094AFF7 /* LocationManager.swift in Sources */,
+				83025BB22E4AAECE0094AFF7 /* SpeedyApp.swift in Sources */,
+				83C9B1A22E56789200B12C34 /* SpeedyAppDelegate.swift in Sources */,
+				83025BB32E4AAECE0094AFF7 /* SettingsView.swift in Sources */,
+				83025BBF2E4AD29F0094AFF7 /* GPXParser.swift in Sources */,
+				83025BC02E4AD29F0094AFF7 /* LoadingView.swift in Sources */,
+				83025BC32E4AD29F0094AFF7 /* SpeedLimitCache.swift in Sources */,
+				83E0AD012E6B000100AD0FAD /* AdManager.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		831DE8032E553DD100C58100 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 831DE7ED2E553DCE00C58100 /* SpeedyWidgetExtension */;
+			targetProxy = 831DE8022E553DD100C58100 /* PBXContainerItemProxy */;
+		};
+		831DE8622E55412D00C58100 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 831DE8542E55412C00C58100 /* SpeedyShared */;
+			targetProxy = 831DE8612E55412D00C58100 /* PBXContainerItemProxy */;
+		};
+		831DE8642E55412D00C58100 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A1234567890123456789028 /* Speedy */;
+			targetProxy = 831DE8632E55412D00C58100 /* PBXContainerItemProxy */;
+		};
+		831DE8692E55412D00C58100 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 831DE8542E55412C00C58100 /* SpeedyShared */;
+			targetProxy = 831DE8682E55412D00C58100 /* PBXContainerItemProxy */;
+		};
+		831DE87D2E55412D00C58100 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 831DE8542E55412C00C58100 /* SpeedyShared */;
+			targetProxy = 831DE87E2E55412D00C58100 /* PBXContainerItemProxy */;
+		};
+		8399B1742E56504C00A86F78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8399B1652E56504900A86F78 /* Speedy Watch App */;
+			targetProxy = 8399B1732E56504C00A86F78 /* PBXContainerItemProxy */;
+		};
+		8399B17E2E56504C00A86F78 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8399B1652E56504900A86F78 /* Speedy Watch App */;
+			targetProxy = 8399B17D2E56504C00A86F78 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		831DE8062E553DD100C58100 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeedyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpeedyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy.SpeedyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		831DE8072E553DD100C58100 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(BUILT_PRODUCTS_DIR)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SpeedyWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpeedyWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy.SpeedyWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		831DE86E2E55412D00C58100 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy.SpeedyShared;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		831DE86F2E55412D00C58100 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_LIBRARY_FOR_DISTRIBUTION = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_MODULE_VERIFIER = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				MODULE_VERIFIER_SUPPORTED_LANGUAGES = "objective-c objective-c++";
+				MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS = "gnu17 gnu++20";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy.SpeedyShared;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_MODULE = YES;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		831DE8712E55412D00C58100 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy.SpeedySharedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speedy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Speedy";
+			};
+			name = Debug;
+		};
+		831DE8722E55412D00C58100 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy.SpeedySharedTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_VERSION = 1;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speedy.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Speedy";
+			};
+			name = Release;
+		};
+		8399B1882E56504C00A86F78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Speedy;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmichon.Speedy;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Debug;
+		};
+		8399B1892E56504C00A86F78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALLOW_TARGET_PLATFORM_SPECIALIZATION = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				ENABLE_PREVIEWS = YES;
+				EXCLUDED_ARCHS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Speedy;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.mmichon.Speedy;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "watchsimulator watchos";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.0;
+			};
+			name = Release;
+		};
+		8399B18A2E56504C00A86F78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mmichon.Speedy-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speedy Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Speedy Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		8399B18B2E56504C00A86F78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mmichon.Speedy-Watch-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Speedy Watch App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Speedy Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		8399B18C2E56504C00A86F78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mmichon.Speedy-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "Speedy Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		8399B18D2E56504C00A86F78 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mmichon.Speedy-Watch-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = "Speedy Watch App";
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		A1234567890123456789034 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1234567890123456789035 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1234567890123456789036 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83025BA02E4AAECE0094AFF1 /* Secrets.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Speedy needs location access to provide accurate speed monitoring and speed limit information while driving, including background updates.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Speedy needs location access to provide accurate speed monitoring and speed limit information while driving, including background updates.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Speedy needs location access to provide accurate speed monitoring and speed limit information while driving.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		A1234567890123456789037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83025BA02E4AAECE0094AFF1 /* Secrets.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = V5TV2ZP49S;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Speedy needs location access to provide accurate speed monitoring and speed limit information while driving, including background updates.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "Speedy needs location access to provide accurate speed monitoring and speed limit information while driving, including background updates.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Speedy needs location access to provide accurate speed monitoring and speed limit information while driving.";
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmichon.Speedy;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FONAME = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		831DE8092E553DD100C58100 /* Build configuration list for PBXNativeTarget "SpeedyWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				831DE8062E553DD100C58100 /* Debug */,
+				831DE8072E553DD100C58100 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		831DE86D2E55412D00C58100 /* Build configuration list for PBXNativeTarget "SpeedyShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				831DE86E2E55412D00C58100 /* Debug */,
+				831DE86F2E55412D00C58100 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		831DE8702E55412D00C58100 /* Build configuration list for PBXNativeTarget "SpeedySharedTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				831DE8712E55412D00C58100 /* Debug */,
+				831DE8722E55412D00C58100 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8399B18E2E56504C00A86F78 /* Build configuration list for PBXNativeTarget "Speedy Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8399B1882E56504C00A86F78 /* Debug */,
+				8399B1892E56504C00A86F78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8399B18F2E56504C00A86F78 /* Build configuration list for PBXNativeTarget "Speedy Watch AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8399B18A2E56504C00A86F78 /* Debug */,
+				8399B18B2E56504C00A86F78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8399B1902E56504C00A86F78 /* Build configuration list for PBXNativeTarget "Speedy Watch AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8399B18C2E56504C00A86F78 /* Debug */,
+				8399B18D2E56504C00A86F78 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1234567890123456789029 /* Build configuration list for PBXNativeTarget "Speedy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1234567890123456789036 /* Debug */,
+				A1234567890123456789037 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1234567890123456789033 /* Build configuration list for PBXProject "Speedy" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1234567890123456789034 /* Debug */,
+				A1234567890123456789035 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		83D388F02E6A84C7003FD8E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.10.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		83D388F12E6A84C7003FD8E6 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83D388F02E6A84C7003FD8E6 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A1234567890123456789032 /* Project object */;
+}
