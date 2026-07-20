@@ -129,6 +129,23 @@ struct SpeedLimitGeoTests {
         let b = CLLocationCoordinate2D(latitude: 37.123459, longitude: -122.654329)
         #expect(SpeedLimitGeo.gridKey(a) == SpeedLimitGeo.gridKey(b))
     }
+
+    @Test("destination projects a point along a heading at the expected distance")
+    func destination() {
+        let origin = CLLocationCoordinate2D(latitude: 37.0, longitude: -122.0)
+
+        let north = SpeedLimitGeo.destination(from: origin, bearingDegrees: 0, distanceMeters: 150)
+        #expect(north.latitude > origin.latitude)
+        #expect(abs(north.longitude - origin.longitude) < 0.0001)
+
+        let east = SpeedLimitGeo.destination(from: origin, bearingDegrees: 90, distanceMeters: 150)
+        #expect(east.longitude > origin.longitude)
+        #expect(abs(east.latitude - origin.latitude) < 0.0001)
+
+        let originLocation = CLLocation(latitude: origin.latitude, longitude: origin.longitude)
+        let northLocation = CLLocation(latitude: north.latitude, longitude: north.longitude)
+        #expect(abs(originLocation.distance(from: northLocation) - 150) < 1)
+    }
 }
 
 struct StatutoryDefaultTests {

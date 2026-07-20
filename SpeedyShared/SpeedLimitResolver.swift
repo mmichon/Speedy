@@ -121,6 +121,25 @@ public enum SpeedLimitGeo {
         return diff
     }
 
+    private static let earthRadiusMeters = 6_371_000.0
+
+    /// Destination point `distanceMeters` from `origin` along `bearingDegrees`
+    /// (0 = north, clockwise), via the standard spherical direct formula.
+    public static func destination(from origin: CLLocationCoordinate2D,
+                                   bearingDegrees: Double,
+                                   distanceMeters: Double) -> CLLocationCoordinate2D {
+        let bearing = bearingDegrees * .pi / 180
+        let angularDistance = distanceMeters / earthRadiusMeters
+        let lat1 = origin.latitude * .pi / 180
+        let lon1 = origin.longitude * .pi / 180
+
+        let lat2 = asin(sin(lat1) * cos(angularDistance) + cos(lat1) * sin(angularDistance) * cos(bearing))
+        let lon2 = lon1 + atan2(sin(bearing) * sin(angularDistance) * cos(lat1),
+                                 cos(angularDistance) - sin(lat1) * sin(lat2))
+
+        return CLLocationCoordinate2D(latitude: lat2 * 180 / .pi, longitude: lon2 * 180 / .pi)
+    }
+
     /// Grid-snapped cache key. ~4 decimal places ≈ 11 m, so consecutive GPS
     /// fixes along a road collapse to the same key and the cache actually hits.
     public static func gridKey(_ c: CLLocationCoordinate2D, precision: Int = 4) -> String {

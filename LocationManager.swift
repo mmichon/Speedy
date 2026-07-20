@@ -15,6 +15,11 @@ class LocationManager: NSObject, ObservableObject {
     let speedLimitService = SpeedLimitService.shared
     private var activity: Activity<SpeedyWidgetAttributes>? = nil
     private var isLiveActivityActive: Bool = false
+    // Set synchronously while an Activity.request is in flight. isLiveActivityActive
+    // is only set once the async request resolves, so without this guard two callers
+    // in the same run loop can both start an activity and create duplicates (which
+    // also surface as multiple Live Activities on the Apple Watch Smart Stack).
+    private var isStartingLiveActivity: Bool = false
     private var liveActivityUpdateTimer: Timer?
     private let movementThreshold: Double = 2.0 // MPH threshold to consider device moving
     private var stationaryStart: Date? = nil // when the device last became stationary
@@ -254,7 +259,8 @@ class LocationManager: NSObject, ObservableObject {
                         // If we have a location, trigger a speed limit lookup for the new road
                         if let location = self.locationManager.location {
                             self.log("Road name changed to '\(roadName)', triggering speed limit lookup", level: "INFO")
-                            self.speedLimitService.forceLookupSpeedLimit(for: location.coordinate)
+                            self.speedLimitService.forceLookupSpeedLimit(for: location.coordinate,
+                                                                         course: location.course >= 0 ? location.course : nil)
                         }
                     } else {
                         // Road name is the same, just update it
@@ -313,11 +319,21 @@ class LocationManager: NSObject, ObservableObject {
         let speedInMPS = location.speed
         let speedInMPH = speedInMPS * 2.23694 // Convert m/s to MPH
 
+        // Detect a stale location. The update timer fires every 0.5s but
+        // distanceFilter (1m) means CoreLocation stops delivering new fixes once
+        // we stop moving. In that case locationManager.location keeps returning
+        // the last fix captured at the moment we stopped — which can carry a
+        // residual speed (e.g. 2 MPH) — so the display gets stuck above 0.
+        // Treat any fix older than the threshold as the vehicle being stationary.
+        let locationAge = Date().timeIntervalSince(location.timestamp)
+        let isStaleLocation = locationAge > 2.0
+
         // Enhanced speed threshold to prevent phantom speeds when stationary
         let speedThreshold = 1.0 // MPH - even more aggressive threshold for stationary detection
 
         // Additional check for very low speeds that are likely GPS noise
-        let isLikelyStationary = speedInMPH <= speedThreshold ||
+        let isLikelyStationary = isStaleLocation ||
+                                speedInMPH <= speedThreshold ||
                                 (speedInMPH <= 2.0 && location.horizontalAccuracy > 5.0) || // More aggressive detection
                                 (speedInMPH <= 3.0 && location.horizontalAccuracy > 10.0) // Very poor GPS accuracy
 
@@ -467,8 +483,9 @@ class LocationManager: NSObject, ObservableObject {
         // quickly and the warning above resolves. The service's own throttle and the
         // isLookingUpSpeedLimit guard keep this from spamming the HERE API.
         if !isLookingUpSpeedLimit, currentSpeed > adjustedSpeedLimit + 12.0,
-           let coordinate = location?.coordinate {
-            speedLimitService.forceLookupSpeedLimit(for: coordinate)
+           let location = location {
+            speedLimitService.forceLookupSpeedLimit(for: location.coordinate,
+                                                     course: location.course >= 0 ? location.course : nil)
         }
 
         // Fire a speeding alert when crossing into speeding (only if sound alerts are enabled)
@@ -674,6 +691,13 @@ class LocationManager: NSObject, ObservableObject {
             Logger.log("Deferring live activity start; app is not in foreground", level: .info, category: "LocationManager")
             return
         }
+        // Bail if an activity is already active or a start is already in flight.
+        // This runs synchronously on the main thread, so a second caller in the same
+        // run loop sees the in-flight flag and won't create a duplicate activity.
+        if isLiveActivityActive || isStartingLiveActivity {
+            print("Live activity already active or starting, skipping start request")
+            return
+        }
         // Check if we already have an active activity
         if let existingActivity = activity, existingActivity.activityState == .active {
             print("Live activity already active, skipping start request")
@@ -733,12 +757,16 @@ class LocationManager: NSObject, ObservableObject {
 
         Logger.log("Starting live activity with state: speed=\(state.currentSpeed), limit=\(state.speedLimit), road=\(state.roadName), speeding=\(state.isSpeeding)", level: .info, category: "LocationManager")
 
+        // Mark a start as in flight before the async request so concurrent callers bail.
+        isStartingLiveActivity = true
+
         Task {
             do {
                 let newActivity = try Activity.request(attributes: attributes, content: ActivityContent(state: state, staleDate: Date().addingTimeInterval(3600)))
                 await MainActor.run {
                     self.activity = newActivity
                     self.isLiveActivityActive = true
+                    self.isStartingLiveActivity = false
                     self.startLiveActivityUpdateTimer()
                 }
 
@@ -750,6 +778,7 @@ class LocationManager: NSObject, ObservableObject {
                 Logger.log("Error details: \(error)", level: .error, category: "LocationManager")
                 await MainActor.run {
                     self.isLiveActivityActive = false
+                    self.isStartingLiveActivity = false
                     self.stopLiveActivityUpdateTimer()
                 }
             }
@@ -833,9 +862,10 @@ class LocationManager: NSObject, ObservableObject {
         // Update all active activities to ensure CarPlay/lock screen stay in sync
         let activeActivities = Activity<SpeedyWidgetAttributes>.activities.filter { $0.activityState == .active }
         if activeActivities.isEmpty {
-            if liveActivitiesEnabled && UIApplication.shared.applicationState == .active {
-                startLiveActivity()
-            }
+            // Do NOT resurrect a Live Activity here. Starting and stopping is owned
+            // solely by manageLiveActivityBasedOnMovement() so that a Live Activity
+            // stopped after parking stays stopped instead of being restarted on the
+            // next location update / timer tick.
             return
         }
 
@@ -900,6 +930,7 @@ class LocationManager: NSObject, ObservableObject {
             await activity.end(ActivityContent(state: state, staleDate: nil))
             self.activity = nil
             self.isLiveActivityActive = false
+            self.isStartingLiveActivity = false
             print("Live activity stopped")
             self.stopLiveActivityUpdateTimer()
 
@@ -1039,7 +1070,8 @@ class LocationManager: NSObject, ObservableObject {
         print("Network came online, triggering immediate speed limit lookup")
         if let location = locationManager.location {
             // Force a speed limit lookup when network comes online
-            speedLimitService.forceLookupSpeedLimit(for: location.coordinate)
+            speedLimitService.forceLookupSpeedLimit(for: location.coordinate,
+                                                     course: location.course >= 0 ? location.course : nil)
         }
     }
 
@@ -1429,7 +1461,8 @@ extension LocationManager: CLLocationManagerDelegate {
             // Lowered from 500m so freeway on-ramps / arterial transitions trigger a
             // fresh speed-limit lookup quickly instead of waiting on the 5s timer.
             if distance > 150 {
-                speedLimitService.forceLookupSpeedLimit(for: location.coordinate)
+                speedLimitService.forceLookupSpeedLimit(for: location.coordinate,
+                                                         course: location.course >= 0 ? location.course : nil)
                 updateRoadName()
             }
         }
@@ -1465,7 +1498,8 @@ extension LocationManager: CLLocationManagerDelegate {
                 // Immediately attempt to get road name and speed limit on startup
                 if let location = self.locationManager.location {
                     // Force immediate speed limit lookup on startup
-                    self.speedLimitService.forceLookupSpeedLimit(for: location.coordinate)
+                    self.speedLimitService.forceLookupSpeedLimit(for: location.coordinate,
+                                                                 course: location.course >= 0 ? location.course : nil)
                     self.updateRoadName()
                     if location.horizontalAccuracy >= 0 { self.hasGPSLock = true }
                 }

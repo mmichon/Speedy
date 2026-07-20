@@ -35,8 +35,29 @@ final class SoundManager {
             try AVAudioSession.sharedInstance().setActive(true)
             try audioEngine.start()
             isEnginePrepared = true
+            primeAudioRoute()
         } catch {
             print("SoundManager: Failed to start audio engine: \(error)")
+        }
+    }
+
+    /// Establish the audio route once at startup by playing a brief silent buffer.
+    ///
+    /// The first time the player node drives audio to the hardware, iOS performs a
+    /// one-time route change (e.g. onto CarPlay speakers). In a CarPlay context that
+    /// route change makes the system re-evaluate the "now playing" app and briefly
+    /// pauses it (e.g. Spotify). Priming with silence here forces that one-time route
+    /// change to happen harmlessly at launch instead of during the first real alert.
+    private func primeAudioRoute() {
+        let duration: Double = 0.2
+        let frameCount = AVAudioFrameCount(duration * audioFormat.sampleRate)
+        guard let buffer = AVAudioPCMBuffer(pcmFormat: audioFormat, frameCapacity: frameCount) else { return }
+        // Leave the buffer's samples at zero (silence).
+        buffer.frameLength = frameCount
+
+        playerNode.scheduleBuffer(buffer, at: nil, completionHandler: nil)
+        if !playerNode.isPlaying {
+            playerNode.play()
         }
     }
 

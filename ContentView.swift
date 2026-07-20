@@ -168,27 +168,38 @@ struct ContentView: View {
     var landscapeLayout: some View {
         HStack(spacing: 0) {
             // Left side - Speed display
-            VStack {
-                Spacer()
-                mainSpeedDisplay
-                Spacer()
+            GeometryReader { proxy in
+                ScrollView {
+                    VStack {
+                        Spacer(minLength: 0)
+                        mainSpeedDisplay
+                        Spacer(minLength: 0)
+                    }
+                    .frame(minHeight: proxy.size.height)
+                }
             }
             .frame(maxWidth: .infinity)
 
             // Right side - Info and controls
-            VStack(spacing: 20) {
-                topStatusBar
-                    .padding(.top, 20)
-                    .padding(.horizontal, 20)
+            GeometryReader { proxy in
+                ScrollView {
+                    VStack(spacing: 12) {
+                        topStatusBar
+                            .padding(.top, 12)
+                            .padding(.horizontal, 20)
 
-                Spacer()
+                        Spacer(minLength: 0)
 
-                bottomInfoPanel
-                    .padding(.horizontal, 20)
+                        bottomInfoPanel
+                            .padding(.horizontal, 20)
+                            .padding(.bottom, 16)
 
-                Spacer()
+                        Spacer(minLength: 0)
 
-                // Banner is rendered via safeAreaInset(bottom)
+                        // Banner is rendered via safeAreaInset(bottom)
+                    }
+                    .frame(minHeight: proxy.size.height)
+                }
             }
             .frame(maxWidth: .infinity)
         }
@@ -266,7 +277,7 @@ struct ContentView: View {
 
     // MARK: - Main Speed Display
     var mainSpeedDisplay: some View {
-        let gaugeSize: CGFloat = verticalSizeClass == .compact ? 230 : 280
+        let gaugeSize: CGFloat = verticalSizeClass == .compact ? 200 : 280
 
         return VStack(spacing: 24) {
             SpeedGaugeView(
@@ -324,7 +335,9 @@ struct ContentView: View {
 
     // MARK: - Bottom Info Panel
     var bottomInfoPanel: some View {
-        VStack(spacing: verticalSizeClass == .compact ? 14 : 16) {
+        let compact = verticalSizeClass == .compact
+
+        return VStack(spacing: compact ? 10 : 16) {
             // Road name (hidden if no GPS lock)
             if locationManager.hasGPSLock, let roadName = locationManager.currentRoadName, !roadName.isEmpty {
                 infoPill(icon: "road.lanes", text: roadName)
@@ -342,7 +355,8 @@ struct ContentView: View {
                     SpeedLimitSign(
                         value: displayedSpeedLimit,
                         isInferred: locationManager.speedLimitIsInferred,
-                        metric: locationManager.unitPreference == .metric
+                        metric: locationManager.unitPreference == .metric,
+                        scale: compact ? 0.78 : 1.0
                     )
 
                     // Alert threshold card
@@ -353,7 +367,7 @@ struct ContentView: View {
                             .tracking(2)
                         HStack(alignment: .lastTextBaseline, spacing: 4) {
                             Text("\(displayedAlertLimit)")
-                                .font(.system(size: 40, weight: .bold, design: .rounded))
+                                .font(.system(size: compact ? 32 : 40, weight: .bold, design: .rounded))
                                 .foregroundStyle(.white)
                                 .lineLimit(1)
                                 .minimumScaleFactor(0.6)
@@ -363,7 +377,7 @@ struct ContentView: View {
                         }
                     }
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 18)
+                    .padding(.vertical, compact ? 10 : 18)
                     .background(
                         RoundedRectangle(cornerRadius: 22, style: .continuous)
                             .fill(.ultraThinMaterial)
@@ -667,7 +681,7 @@ struct ContentView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 18)
-        .padding(.vertical, 14)
+        .padding(.vertical, verticalSizeClass == .compact ? 9 : 14)
         .background(
             RoundedRectangle(cornerRadius: 22, style: .continuous)
                 .fill(.ultraThinMaterial)
@@ -760,6 +774,8 @@ struct SpeedLimitSign: View {
     let value: Int
     let isInferred: Bool
     let metric: Bool
+    /// Shrinks the whole sign (frame, fonts, strokes) for compact-height layouts.
+    var scale: CGFloat = 1.0
 
     private var valueText: String { isInferred ? "~\(value)" : "\(value)" }
 
@@ -779,40 +795,40 @@ struct SpeedLimitSign: View {
     private var roundel: some View {
         ZStack {
             Circle().fill(.white)
-            Circle().stroke(Color.red, lineWidth: 11)
-                .padding(7)
+            Circle().stroke(Color.red, lineWidth: 11 * scale)
+                .padding(7 * scale)
             Text(valueText)
-                .font(.system(size: 42, weight: .heavy, design: .rounded))
+                .font(.system(size: 42 * scale, weight: .heavy, design: .rounded))
                 .foregroundStyle(.black)
                 .minimumScaleFactor(0.5)
                 .lineLimit(1)
-                .padding(.horizontal, 8)
+                .padding(.horizontal, 8 * scale)
         }
-        .frame(width: 118, height: 118)
+        .frame(width: 118 * scale, height: 118 * scale)
         .shadow(color: .black.opacity(0.4), radius: 8, y: 4)
     }
 
     // US-style white rectangular sign
     private var usSign: some View {
-        VStack(spacing: 2) {
+        VStack(spacing: 2 * scale) {
             Text("SPEED")
-                .font(.system(size: 14, weight: .heavy, design: .rounded))
+                .font(.system(size: 14 * scale, weight: .heavy, design: .rounded))
             Text("LIMIT")
-                .font(.system(size: 14, weight: .heavy, design: .rounded))
+                .font(.system(size: 14 * scale, weight: .heavy, design: .rounded))
             Text(valueText)
-                .font(.system(size: 46, weight: .heavy, design: .rounded))
+                .font(.system(size: 46 * scale, weight: .heavy, design: .rounded))
                 .minimumScaleFactor(0.5)
                 .lineLimit(1)
         }
         .foregroundStyle(.black)
-        .frame(width: 110, height: 132)
+        .frame(width: 110 * scale, height: 132 * scale)
         .background(
-            RoundedRectangle(cornerRadius: 10, style: .continuous)
+            RoundedRectangle(cornerRadius: 10 * scale, style: .continuous)
                 .fill(.white)
                 .overlay(
-                    RoundedRectangle(cornerRadius: 6, style: .continuous)
-                        .stroke(Color.black, lineWidth: 3)
-                        .padding(6)
+                    RoundedRectangle(cornerRadius: 6 * scale, style: .continuous)
+                        .stroke(Color.black, lineWidth: 3 * scale)
+                        .padding(6 * scale)
                 )
         )
         .shadow(color: .black.opacity(0.4), radius: 8, y: 4)

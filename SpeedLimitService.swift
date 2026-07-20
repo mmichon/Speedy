@@ -386,7 +386,7 @@ class SpeedLimitService: ObservableObject {
     private var lastValidationRoadName: String? // Track road name for validation purposes
 
     // MARK: - Rate Limiting Queue
-    private var apiCallQueue: [(coordinate: CLLocationCoordinate2D, completion: () -> Void)] = []
+    private var apiCallQueue: [(coordinate: CLLocationCoordinate2D, course: Double?, completion: () -> Void)] = []
     private var isProcessingQueue = false
     private let rateLimitQueue = DispatchQueue(label: "com.speedy.ratelimit", qos: .utility)
 
@@ -688,7 +688,7 @@ class SpeedLimitService: ObservableObject {
             }
 
             // Enqueue the API call for later processing
-            enqueueApiCall(coordinate: coordinate) {
+            enqueueApiCall(coordinate: coordinate, course: course) {
                 self.log("API call processed from queue", level: .debug)
             }
             return
@@ -704,7 +704,11 @@ class SpeedLimitService: ObservableObject {
         SpeedyDataManager.shared.forceWidgetRefresh()
     }
 
-    func forceLookupSpeedLimit(for coordinate: CLLocationCoordinate2D) {
+    /// - Parameter course: the user's GPS course/heading in degrees (0–360),
+    ///   if known. Forwarded to `resolveSpeedLimit` so the bearing-aware
+    ///   Overpass/HERE matching can still avoid latching onto a cross street
+    ///   even on this "force" path (movement/road-change/overshoot triggers).
+    func forceLookupSpeedLimit(for coordinate: CLLocationCoordinate2D, course: Double? = nil) {
         log("forceLookupSpeedLimit called with coordinate: \(coordinate.latitude), \(coordinate.longitude)", level: .debug)
 
         // Force lookup bypasses cache but still respects rate limiting
@@ -712,18 +716,18 @@ class SpeedLimitService: ObservableObject {
             lastApiCallTime = Date()
             isLoading = true
             errorMessage = nil
-            resolveSpeedLimit(coordinate: coordinate, course: nil)
+            resolveSpeedLimit(coordinate: coordinate, course: course)
         } else {
             // Enqueue for rate limiting
             log("Force lookup enqueued due to rate limiting", level: .warning)
-            enqueueApiCall(coordinate: coordinate) {
+            enqueueApiCall(coordinate: coordinate, course: course) {
                 self.log("Force lookup processed from queue", level: .debug)
             }
         }
     }
 
     // MARK: - Force Refresh and Cache Management
-    func forceRefreshSpeedLimit(for coordinate: CLLocationCoordinate2D) {
+    func forceRefreshSpeedLimit(for coordinate: CLLocationCoordinate2D, course: Double? = nil) {
         log("Force refreshing speed limit - clearing cache and bypassing cooldown", level: .info)
 
         // Clear all cached data
@@ -740,7 +744,7 @@ class SpeedLimitService: ObservableObject {
         }
 
         // Force a new lookup
-        forceLookupSpeedLimit(for: coordinate)
+        forceLookupSpeedLimit(for: coordinate, course: course)
     }
 
     func clearSpeedLimitCache() {
@@ -804,7 +808,7 @@ class SpeedLimitService: ObservableObject {
         if hereEnabled, hereCanCall() {
             lastHereApiCallTime = Date()
             group.enter()
-            getSpeedLimitAndRoadNameFromHereCached(coordinate: coordinate) { res in
+            getSpeedLimitAndRoadNameFromHereCached(coordinate: coordinate, course: course) { res in
                 syncQueue.sync {
                     if case .success(let (name, mph)) = res {
                         if let mph = mph, SpeedLimitBounds.isPlausible(mph) {
@@ -886,7 +890,26 @@ class SpeedLimitService: ObservableObject {
         // bad blip); inferred values come from the matched road's class so are
         // accepted directly.
         let finalMph = isInferred ? mph : (validateSpeedLimitChange(newSpeed: mph, coordinate: coordinate) ?? mph)
-        let name = resolved.roadName ?? roadName
+        let candidateName = resolved.roadName ?? roadName
+
+        // A candidate name that doesn't change the road we're already confirmed
+        // on — or that's the very first reading (nothing confirmed yet, e.g.
+        // app startup) — can apply immediately. A candidate that WOULD change
+        // an already-confirmed road must be seen on `roadNameValidationThreshold`
+        // consecutive resolved lookups first — this is what stops a single
+        // ambiguous reading near an intersection (e.g. a cross street) from
+        // flashing on screen for a few seconds before the app self-corrects.
+        var name = candidateName
+        if let candidateName = candidateName, candidateName != currentRoadName, currentRoadName != nil {
+            guard let confirmedName = validateRoadName(candidateName) else {
+                log("Road name candidate '\(candidateName)' not yet confirmed (still '\(currentRoadName ?? "nil")'); holding previous reading", level: .info)
+                DispatchQueue.main.async {
+                    self.isLoading = false
+                }
+                return
+            }
+            name = confirmedName
+        }
 
         lastSuccessfulApiCall = Date()
         lastKnownGoodSpeedLimit = (speed: finalMph, coordinate: coordinate, timestamp: Date())
@@ -900,10 +923,12 @@ class SpeedLimitService: ObservableObject {
         DispatchQueue.main.async {
             self.currentSpeedLimit = finalMph
             self.currentSpeedLimitIsInferred = isInferred
-            if let name = name { self.currentRoadName = name }
+            if let name = name {
+                self.currentRoadName = name
+                self.lastValidationRoadName = name
+            }
             self.isLoading = false
             self.errorMessage = nil
-            self.updateRoadName(name, for: coordinate)
             SpeedyDataManager.shared.forceWidgetRefresh()
         }
         log("Resolved \(finalMph) MPH from \(resolved.source.displayName) (\(isInferred ? "inferred" : "posted"))", level: .info)
@@ -1621,7 +1646,7 @@ class SpeedLimitService: ObservableObject {
     }
 
     // MARK: - HERE API Methods
-    private func getSpeedLimitAndRoadNameFromHereCached(coordinate: CLLocationCoordinate2D, completion: @escaping (Result<(String?, Int?), Error>) -> Void) {
+    private func getSpeedLimitAndRoadNameFromHereCached(coordinate: CLLocationCoordinate2D, course: Double? = nil, completion: @escaping (Result<(String?, Int?), Error>) -> Void) {
         log("Getting speed limit and road name from HERE API (with caching)", level: .info)
 
         // Check cache first
@@ -1649,7 +1674,7 @@ class SpeedLimitService: ObservableObject {
         // Record API call before making it
         hereRateLimiter.recordAPICall(apiType: .routeMatching)
 
-        getSpeedLimitAndRoadNameFromHere(coordinate: coordinate) { result in
+        getSpeedLimitAndRoadNameFromHere(coordinate: coordinate, course: course) { result in
             switch result {
             case .success(let (roadName, speedLimit)):
                 completion(.success((roadName, speedLimit)))
@@ -1659,13 +1684,29 @@ class SpeedLimitService: ObservableObject {
         }
     }
 
-    private func getSpeedLimitAndRoadNameFromHere(coordinate: CLLocationCoordinate2D, completion: @escaping (Result<(String?, Int?), Error>) -> Void) {
+    /// - Parameter course: the user's GPS course/heading in degrees (0–360), if
+    ///   known. Used to build the route-matching waypoints along the direction
+    ///   actually being travelled, instead of a fixed diagonal offset that has
+    ///   no relationship to the road — which is what let this match snap to a
+    ///   cross street right at an intersection.
+    private func getSpeedLimitAndRoadNameFromHere(coordinate: CLLocationCoordinate2D, course: Double? = nil, completion: @escaping (Result<(String?, Int?), Error>) -> Void) {
         log("Making HERE Route Matching API call for coordinate: \(coordinate.latitude), \(coordinate.longitude)", level: .info)
 
-        // Create proper waypoints for route matching - use a larger offset to create a meaningful route segment
-        let offset = 0.01 // Increased offset for better route matching (approximately 1km)
-        let waypoint0 = "\(coordinate.latitude - offset),\(coordinate.longitude - offset)"
-        let waypoint1 = "\(coordinate.latitude + offset),\(coordinate.longitude + offset)"
+        let waypoint0: String
+        let waypoint1: String
+        if let course = course, course >= 0 {
+            // ~150m behind and ~150m ahead along the actual heading of travel.
+            let behind = SpeedLimitGeo.destination(from: coordinate, bearingDegrees: course + 180, distanceMeters: 150)
+            let ahead = SpeedLimitGeo.destination(from: coordinate, bearingDegrees: course, distanceMeters: 150)
+            waypoint0 = "\(behind.latitude),\(behind.longitude)"
+            waypoint1 = "\(ahead.latitude),\(ahead.longitude)"
+        } else {
+            // No course available (e.g. stationary) — fall back to a fixed
+            // diagonal offset for a meaningful route segment.
+            let offset = 0.01 // approximately 1km
+            waypoint0 = "\(coordinate.latitude - offset),\(coordinate.longitude - offset)"
+            waypoint1 = "\(coordinate.latitude + offset),\(coordinate.longitude + offset)"
+        }
 
         log("HERE API waypoints - Start: \(waypoint0), End: \(waypoint1)", level: .debug)
 
@@ -2173,10 +2214,10 @@ class SpeedLimitService: ObservableObject {
     }
 
     // MARK: - Rate Limiting Queue Management
-    private func enqueueApiCall(coordinate: CLLocationCoordinate2D, completion: @escaping () -> Void) {
+    private func enqueueApiCall(coordinate: CLLocationCoordinate2D, course: Double? = nil, completion: @escaping () -> Void) {
         log("Enqueueing API call for rate limiting", level: .debug)
 
-        apiCallQueue.append((coordinate: coordinate, completion: completion))
+        apiCallQueue.append((coordinate: coordinate, course: course, completion: completion))
 
         if !isProcessingQueue {
             processApiCallQueue()
@@ -2207,7 +2248,7 @@ class SpeedLimitService: ObservableObject {
                 self.log("Processing queued API call", level: .debug)
 
                 DispatchQueue.main.async {
-                    self.resolveSpeedLimit(coordinate: nextCall.coordinate, course: nil)
+                    self.resolveSpeedLimit(coordinate: nextCall.coordinate, course: nextCall.course)
                     nextCall.completion()
                 }
 
@@ -2237,8 +2278,11 @@ class SpeedLimitService: ObservableObject {
     // MARK: - Road Name Change Detection
     private var lastRoadName: String?
     private var roadNameValidationHistory: [String: (count: Int, lastSeen: Date)] = [:]
-    private let roadNameValidationThreshold = 3 // Require 3 consistent readings
-    private let roadNameValidationTimeWindow: TimeInterval = 30 // 30 seconds
+    // Lowered from 3/30s: `processResolvedResult` now gates the *display* on
+    // this (not just a re-lookup trigger), so a tighter window keeps genuine
+    // road changes settling in ~1 extra lookup cycle instead of 3.
+    private let roadNameValidationThreshold = 2 // Require 2 consistent readings
+    private let roadNameValidationTimeWindow: TimeInterval = 8 // seconds
 
     func updateRoadName(_ newRoadName: String?, for coordinate: CLLocationCoordinate2D) {
         // Validate the road name to ensure it's the actual road being driven on
